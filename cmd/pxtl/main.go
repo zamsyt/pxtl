@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/zamsyt/pxtl/pxtl"
+	"github.com/zamsyt/pxtl"
 )
 
 var rootCmd = &cobra.Command{
