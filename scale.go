@@ -2,6 +2,7 @@ package pxtl
 
 import (
 	"image"
+	"image/draw"
 )
 
 func Upscale(s int, img image.Image) image.Image {
@@ -24,4 +25,10 @@ func Upscale(s int, img image.Image) image.Image {
 	}
 
 	return newImg
+}
+
+func Crop(img image.Image, x1, y1, x2, y2 int) image.Image {
+	cropped := image.NewRGBA(image.Rect(x1, y1, x2, y2))
+	draw.Draw(cropped, cropped.Bounds(), img, image.Point{x1, y1}, draw.Src)
+	return cropped
 }

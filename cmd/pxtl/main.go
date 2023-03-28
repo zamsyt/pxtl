@@ -19,10 +19,11 @@ var OutPath string
 
 func init() {
 	rootCmd.CompletionOptions.HiddenDefaultCmd = true
+	rootCmd.PersistentFlags().StringVar(&OutPath, "out", "output.png", "where to save output image")
 
 	var upscaleCmd = &cobra.Command{
 		Use:   "upscale <image_path>",
-		Short: "Upscale some pixel art",
+		Short: "Upscale pixel art",
 		//Long:  "",
 		//Args: cobra.MinimumNArgs(1),
 		Args: cobra.ExactArgs(1),
@@ -31,9 +32,8 @@ func init() {
 		},
 	}
 
-	upscaleCmd.Flags().IntVarP(&ScaleFactor, "factor", "f", 1, "scaling factor")
+	upscaleCmd.Flags().IntVarP(&ScaleFactor, "factor", "f", 0, "scaling factor")
 	upscaleCmd.MarkFlagRequired("factor")
-	upscaleCmd.Flags().StringVar(&OutPath, "out", "output.png", "where to save scaled image")
 
 	var cmds = [](*cobra.Command){
 		{
@@ -44,6 +44,7 @@ func init() {
 			},
 		},
 		upscaleCmd,
+		cropCmd,
 	}
 
 	rootCmd.AddCommand(cmds...)
