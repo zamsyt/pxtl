@@ -32,7 +32,7 @@ func (cs *coords) Type() string { return "numbers" }
 
 var cropCmd = &cobra.Command{
 	Use:   "crop <image_path>",
-	Short: "Crop images",
+	Short: "Crop image",
 	Run: func(cmd *cobra.Command, args []string) {
 		savePng(pxtl.Crop(getImg(args[0]), bounds[0], bounds[1], bounds[2], bounds[3]), OutPath)
 	},
