@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 	"github.com/zamsyt/pxtl"
 )
@@ -25,7 +27,12 @@ var downscaleCmd = &cobra.Command{
 	Long:  `Downscale image. By default, attempts to revert upscaled pixel art to 1:1 scale.`,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		savePng(pxtl.Downscale(scaleFactor, sampleOffset, getImg(args[0])), OutPath)
+		img := getImg(args[0])
+		if scaleFactor <= 0 {
+			scaleFactor = pxtl.DetectFactor(img, 0)
+			fmt.Println("Downscaling with a factor of", scaleFactor)
+		}
+		savePng(pxtl.Downscale(scaleFactor, sampleOffset, img), OutPath)
 	},
 }
 
@@ -34,6 +41,5 @@ func init() {
 	upscaleCmd.MarkFlagRequired("factor")
 
 	downscaleCmd.Flags().IntVarP(&scaleFactor, "factor", "f", 0, "scaling factor")
-	downscaleCmd.MarkFlagRequired("factor")
 	downscaleCmd.Flags().IntVar(&sampleOffset, "sample-offset", -1, "offset within tile where to pick color (default: factor/2)") // FIXME: hide "(default -1)"
 }
