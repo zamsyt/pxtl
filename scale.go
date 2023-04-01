@@ -170,7 +170,7 @@ MAXW:
 		//log.Fatal("MAXW:", maxW)
 		return maxW
 	}
-	return 0
+	return -1
 }
 
 func Downscale(factor, sampleOffset int, img image.Image) image.Image {
