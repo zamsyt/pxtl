@@ -10,15 +10,15 @@ var upscaleCmd = &cobra.Command{
 	Short: "Upscale pixel art",
 	Run: func(cmd *cobra.Command, args []string) {
 		inputImg := getImg(args[0])
-		scaledImg := inputImg.Upscale(upscaleFactor)
+		scaledImg := inputImg.Upscale(scaleFactor)
 		savePng(scaledImg, outPath)
 	},
 }
 
-var upscaleFactor int
+var scaleFactor int
 
 func init() {
-	upscaleCmd.Flags().IntVarP(&upscaleFactor, "factor", "f", 0, "scaling factor")
+	upscaleCmd.Flags().IntVarP(&scaleFactor, "factor", "f", 0, "scaling factor")
 	upscaleCmd.MarkFlagRequired("factor")
 
 	rootCmd.AddCommand(upscaleCmd)
