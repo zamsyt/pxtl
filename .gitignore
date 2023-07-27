@@ -1,2 +1,4 @@
 test-output
 cmd/pxtl/pxtl
+bin
+test-images/*_auto-downscale.png
