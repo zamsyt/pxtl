@@ -2,7 +2,9 @@
 
 ## Installation
 
-If you have Go installed:
+Download: https://github.com/zamsyt/pxtl/releases
+
+Alternatively, installation from source:
 ```
 go install github.com/zamsyt/pxtl/cmd/pxtl@latest
 ```
